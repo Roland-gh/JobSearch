@@ -1,0 +1,61 @@
+﻿@page
+@model Pages.JobSearch.EditModel
+
+@{
+    ViewData["Title"] = "Edit Job";
+}
+
+<h1>Edit</h1>
+
+<hr />
+<div >
+    <div >
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" ></div>
+            <input type="hidden" asp-for="Job.JobID" />
+            <div >
+                <label asp-for="Job.DateApplied" ></label> 
+                <input asp-for="Job.DateApplied"  />
+                <span asp-validation-for="Job.DateApplied" ></span>
+            </div>
+            <div >
+                <label asp-for="Job.SearchProvider" ></label>
+                <input asp-for="Job.SearchProvider" />
+                <span asp-validation-for="Job.SearchProvider" ></span>
+            </div>
+            <div >
+                <label asp-for="Job.JobTitle" ></label>
+                <input asp-for="Job.JobTitle"  />
+                <span asp-validation-for="Job.JobTitle" ></span>
+            </div>
+            <div >
+                <label asp-for="Job.Employer" ></label>
+                <input asp-for="Job.Employer"  />
+                <span asp-validation-for="Job.Employer" ></span>
+            </div>
+            <div >
+                <label asp-for="Job.PayRange" ></label>
+                <input asp-for="Job.PayRange"  />
+                <span asp-validation-for="Job.PayRange" ></span>
+            </div>
+            <div >
+                <label asp-for="Job.JobDescription" ></label>
+                <textarea asp-for="Job.JobDescription"  cols="30" rows="10"></textarea>
+                <span asp-validation-for="Job.JobDescription" ></span>
+            </div>
+            <div >
+                <input type="submit" value="Save"  />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-2">
+    <a asp-page="/Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

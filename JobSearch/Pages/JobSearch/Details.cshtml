@@ -1,0 +1,56 @@
+﻿@page
+@model Pages.JobSearch.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.DateApplied)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.DateApplied)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.SearchProvider)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.SearchProvider)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.JobTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.JobTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.Employer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Employer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.PayRange)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.PayRange)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.JobDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.JobDescription)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="/JobSearch/Edit" asp-route-id="@Model.Job.JobID">Edit</a> |
+    <a asp-page="/Index">Back to Beginning</a> |
+    <label class="link-primary text-decoration-underline" onclick="history.back()">Back one page</label>
+</div>

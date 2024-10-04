@@ -1,0 +1,94 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Employment Opportunities";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p class="text-primary">Below are jobs I have applied to since April of 2024. <span class="appcount float-end ">&nbsp;&nbsp;Resume Submitted: @Model.NumberOfJobs times.</span> </p>
+
+<p>
+    <a asp-page="JobSearch/Create">Create New</a>
+</p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Title: <input type="text" name="SearchString" value="@Model.SearchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </div>
+</form>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].DateApplied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].SearchProvider)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].JobTitle)
+            </th>
+            <!--
+            <th>
+            @Html.DisplayNameFor(model => model.Job[0].Employer)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Job[0].PayRange)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Job[0].JobDescription)
+            </th>
+            -->
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Job)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateApplied)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SearchProvider)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTitle)
+                </td>
+
+                <td>
+                    <a asp-page="JobSearch/Edit" asp-route-id="@item.JobID">Edit</a> |
+                    <a asp-page="JobSearch/Details" asp-route-id="@item.JobID">Details</a> |
+                    <a asp-page="JobSearch/Delete" asp-route-id="@item.JobID">Delete</a>
+                </td>
+
+            </tr>
+
+
+
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.Job.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Job.HasNextPage ? "disabled" : "";
+
+    var curPage = Model.Job.PageIndex;
+    var recordCount = Model.Job.TotalPages;
+
+}
+
+<a asp-asp-page="./Index"
+   asp-route-pageIndex="@(Model.Job.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">Previous</a>
+
+<a asp-asp-page="./Index"
+   asp-route-pageIndex="@(Model.Job.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">Next</a>
+
+<p>You are on page @curPage of @recordCount pages</p>
